@@ -22,15 +22,15 @@ public class MainApp {
 				break;
 
 			case 3:
-				// withdrawAmount(sc, b);
+				withdrawAmount(sc, b);
 				break;
 
 			case 4:
-//				checkBalance(sc, b);
+				checkBalance(sc, b);
 				break;
 
 			case 5:
-				// deleteAccount(sc, b);
+				deleteAccount(sc, b);
 				break;
 
 			case 6:
@@ -42,6 +42,40 @@ public class MainApp {
 				System.out.println("Invalid option. Please try again.");
 			}
 		}
+
+	}
+
+	private static void deleteAccount(Scanner sc, Banking b) {
+		// TODO Auto-generated method stub
+		System.out.println("Enter you Account No");
+		String acc = sc.next();
+		System.out.println("Enter your password");
+		String pwd = sc.next();
+		b.deleteAccount(acc, pwd);
+	}
+
+	private static void checkBalance(Scanner sc, Banking b) {
+		// TODO Auto-generated method stub
+		System.out.println("Enter you Account No");
+		String s = sc.next();
+		System.out.println("Enter your password");
+		String a = sc.next();
+		b.checkBalanceAmnt(s, a);
+	}
+
+	private static void withdrawAmount(Scanner sc, Banking b) {
+		System.out.println("Enter you Account No");
+		String accountNo = sc.next().trim();
+		System.out.println("Enter your password: ");
+		String pwd = sc.next().trim();
+		System.out.println("Enter amount to be withdrawn: ");
+		double amount = sc.nextDouble();
+		while (amount <= 0) {
+			System.out.println("Amount must be greater than 0. Please enter a valid amount.");
+			amount = sc.nextDouble();
+		}
+
+		b.withDrawAmount(accountNo, pwd, amount);
 
 	}
 

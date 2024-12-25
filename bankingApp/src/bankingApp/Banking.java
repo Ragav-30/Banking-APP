@@ -55,4 +55,56 @@ public class Banking {
 		System.out.println("Accounts: " + m.keySet());
 	}
 
+	public void withDrawAmount(String acc, String pwd, double amount) {
+		// TODO Auto-generated method stub
+		acc = acc.trim();
+		if (m.containsKey(acc)) {
+			Account a = m.get(acc);
+			if (pwd.equalsIgnoreCase(a.getPassword())) {
+				if (a.getBalance() >= amount) {
+					a.setBalance(a.getBalance() - amount);
+					System.out.println("Amount withdrawn " + amount + " Current Balance: " + a.getBalance());
+				} else {
+					System.out.println("Insufficient balance to withdraw.");
+				}
+			} else {
+				System.out.println("Wrong password. Kindly enter correct password. Thank you.");
+				return;
+			}
+		} else {
+			System.out.println("The Account No doesn't exists. Kindly check and enter your Account No");
+		}
+	}
+
+	public void checkBalanceAmnt(String s, String a) {
+		// TODO Auto-generated method stub
+		if (m.containsKey(s)) {
+			Account p = m.get(s);
+			if (a.equalsIgnoreCase(p.getPassword())) {
+				System.out.println("Your current balance is: " + p.getBalance());
+			} else {
+				System.out.println("Kindly enter correct password to continue. ");
+				return;
+			}
+		} else {
+			System.out.println("The Account No doesn't exists. Kindly check and enter your Account No");
+		}
+	}
+
+	public void deleteAccount(String acc, String pwd) {
+		// TODO Auto-generated method stub
+		if (m.containsKey(acc)) {
+			Account a = m.get(acc);
+			if (pwd.equalsIgnoreCase(a.getPassword())) {
+				m.remove(acc);
+				System.out.println("Your Account is permanently deleted. Thanks for using our service.");
+			} else {
+				System.out.println("Kindly enter correct password to continue. ");
+				return;
+			}
+		} else {
+			System.out.println("The Account No doesn't exists. Kindly check and enter your Account No");
+		}
+	}
+
 }
